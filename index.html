@@ -1,26 +1,187 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Edu Platform</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduAccess - Unlock Your Learning Potential</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Welcome to Edu Platform</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="courses.html">Courses</a></li>
-        <li><a href="register.html">Register</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">🎓 EduAccess</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <form action="connect-db.php" method="post" style="display:inline;">
+                        <button type="submit" class="db-connect-btn">Connect to Database</button>
+                    </form>
+                </li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </nav>
-  </header>
 
-  <div class="slider">
-    <img src="https://via.placeholder.com/800x200?text=Learn+New+Skills" id="slide" alt="slider image">
-  </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Unlock Your Learning Potential</h1>
+            <p>Access world-class education from anywhere. Learn at your own pace with interactive courses, expert instructors, and cutting-edge technology.</p>
+            <a href="#courses" class="cta-button">Start Learning Today</a>
+        </div>
+    </section>
 
-  <script src="script.js"></script>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title fade-in">Why Choose EduAccess?</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📚</div>
+                    <h3>Expert-Led Courses</h3>
+                    <p>Learn from industry experts and experienced educators who are passionate about sharing their knowledge and helping you succeed.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💻</div>
+                    <h3>Interactive Learning</h3>
+                    <p>Engage with hands-on projects, quizzes, and interactive content that makes learning enjoyable and effective.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Certified Programs</h3>
+                    <p>Earn recognized certificates upon completion that validate your skills and boost your career prospects.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Learning</h3>
+                    <p>Access your courses anywhere, anytime with our mobile-optimized platform. Learn on your schedule.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">👥</div>
+                    <h3>Community Support</h3>
+                    <p>Connect with fellow learners, participate in discussions, and get help from our supportive community.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Personalized Path</h3>
+                    <p>AI-powered recommendations help you discover the perfect learning path based on your goals and interests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses" id="courses">
+        <div class="container">
+            <h2 class="section-title fade-in">Popular Courses</h2>
+            <div class="courses-grid">
+                <div class="course-card fade-in">
+                    <div class="course-image" data-course="web-dev"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">Web Development Bootcamp</h3>
+                        <p class="course-description">Master modern web development with HTML, CSS, JavaScript, React, and Node.js. Build real-world projects and launch your career.</p>
+                        <div class="course-meta">
+                            <span class="course-price">$199</span>
+                            <button class="enroll-btn">Enroll Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card fade-in">
+                    <div class="course-image" data-course="data-science"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">Data Science & Analytics</h3>
+                        <p class="course-description">Learn Python, machine learning, statistics, and data visualization. Transform data into actionable insights.</p>
+                        <div class="course-meta">
+                            <span class="course-price">$249</span>
+                            <button class="enroll-btn">Enroll Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card fade-in">
+                    <div class="course-image" data-course="digital-marketing"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">Digital Marketing Mastery</h3>
+                        <p class="course-description">Master SEO, social media marketing, content creation, and analytics to grow any business online.</p>
+                        <div class="course-meta">
+                            <span class="course-price">$149</span>
+                            <button class="enroll-btn">Enroll Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title">Our Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-count="50000">0</div>
+                    <div class="stat-label">Students Enrolled</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-count="500">0</div>
+                    <div class="stat-label">Courses Available</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-count="98">0</div>
+                    <div class="stat-label">% Success Rate</div>
+                </div>
+                <div class="stat-item fade-in">
+                    <div class="stat-number" data-count="150">0</div>
+                    <div class="stat-label">Expert Instructors</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EduAccess</h3>
+                    <p>Empowering learners worldwide with accessible, high-quality education that transforms lives and careers.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#courses">Courses</a>
+                    <a href="#about">About Us</a>
+                    <a href="#careers">Careers</a>
+                    <a href="#blog">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="#help">Help Center</a>
+                    <a href="#contact">Contact Us</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EduAccess Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

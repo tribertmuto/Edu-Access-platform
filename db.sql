@@ -11,3 +11,11 @@ CREATE TABLE users (
     course NVARCHAR(50) NOT NULL,
     created_at DATETIME DEFAULT GETDATE()
 );
+CREATE TABLE user_enrollments (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    user_id INT NOT NULL,
+    course NVARCHAR(50) NOT NULL,
+    enrolled_at DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
