@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Register</h2>
+  <form action="register.php" method="POST" onsubmit="validateForm(event)">
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="email" name="email" id="email" placeholder="Email" required>
+    <input type="number" name="age" placeholder="Age" required>
+    <select name="course" required>
+      <option value="">Select Course</option>
+      <option value="html">HTML Basics</option>
+      <option value="js">JavaScript 101</option>
+    </select>
+    <span id="error" class="error"></span>
+    <button type="submit">Submit</button>
+  </form>
+  <script src="script.js"></script>
+</body>
+</html>

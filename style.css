@@ -1,0 +1,27 @@
+body {
+  font-family: Arial;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-color: #007BFF;
+  color: white;
+  padding: 1em;
+}
+nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 1em;
+}
+.slider img {
+  width: 100%;
+  max-height: 300px;
+}
+input, textarea {
+  display: block;
+  margin-bottom: 10px;
+  padding: 8px;
+}
+.error {
+  color: red;
+}
