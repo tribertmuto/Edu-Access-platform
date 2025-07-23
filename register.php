@@ -34,6 +34,19 @@ if ($errors) {
     exit;
 }
 
+// Check if email already exists
+$check = $conn->prepare("SELECT id FROM users WHERE email = ?");
+$check->bind_param("s", $email);
+$check->execute();
+$check->store_result();
+if ($check->num_rows > 0) {
+    echo "<p style='color:red;'>A user with this email already exists.</p>";
+    $check->close();
+    $conn->close();
+    exit;
+}
+$check->close();
+
 // Hash password if provided
 $password_hash = null;
 if (isset($_POST['password'])) {

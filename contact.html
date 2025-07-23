@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact EduAccess</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .contact-hero {
+            background: linear-gradient(120deg, #e3e9fc 0%, #f8fafc 100%);
+            padding: 4rem 0 2rem 0;
+            text-align: center;
+        }
+        .contact-hero h1 {
+            color: #1a237e;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .contact-hero p {
+            color: #333;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+        }
+        .contact-section {
+            background: #fff;
+            padding: 3rem 0;
+        }
+        .contact-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            justify-content: center;
+        }
+        .contact-details, .contact-form {
+            flex: 1 1 320px;
+            background: #f3f6ff;
+            border-radius: 1.2rem;
+            box-shadow: 0 4px 24px rgba(90,111,216,0.08);
+            padding: 2rem 1.5rem;
+        }
+        .contact-details h2, .contact-form h2 {
+            color: #5a6fd8;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        .contact-details ul {
+            list-style: none;
+            padding: 0;
+            color: #222;
+        }
+        .contact-details li {
+            margin-bottom: 1rem;
+            font-size: 1.08rem;
+        }
+        .contact-form label {
+            color: #1a237e;
+            font-weight: 500;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 0.7rem;
+            border-radius: 0.5rem;
+            border: 1px solid #ddd;
+            margin-top: 0.3rem;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+        .contact-form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .contact-form button {
+            width: 100%;
+            background: linear-gradient(45deg, #ffd700, #5a6fd8);
+            color: #fff;
+            padding: 0.9rem 0;
+            border-radius: 2rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .contact-form button:hover {
+            background: linear-gradient(45deg, #5a6fd8, #ffd700);
+            color: #fff;
+            transform: translateY(-2px) scale(1.04);
+        }
+        .contact-success {
+            color: #43a047;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">🎓 EduAccess</a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#features">Why Us</a></li>
+                <li><a href="index.html#courses">Courses</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="auth.html" class="auth-btn register-btn">Register</a></li>
+                <li><a href="auth.html" class="auth-btn login-btn">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="contact-hero">
+        <h1>Contact EduAccess</h1>
+        <p>
+            Have questions, feedback, or need support? Our team is here to help you on your learning journey. Reach out to us anytime!
+        </p>
+    </section>
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-details">
+                <h2>Contact Information</h2>
+                <ul>
+                    <li><strong>Email:</strong> support@eduaccess.com</li>
+                    <li><strong>Phone:</strong> +1 (555) 123-4567</li>
+                    <li><strong>Address:</strong> 123 Learning Lane, Knowledge City, 45678</li>
+                    <li><strong>Hours:</strong> Mon-Fri, 9am - 6pm</li>
+                </ul>
+            </div>
+            <form class="contact-form" id="contact-form" autocomplete="off">
+                <h2>Send Us a Message</h2>
+                <div id="contact-success"></div>
+                <label for="contact-name">Your Name</label>
+                <input type="text" id="contact-name" name="name" required>
+                <label for="contact-email">Your Email</label>
+                <input type="email" id="contact-email" name="email" required>
+                <label for="contact-message">Message</label>
+                <textarea id="contact-message" name="message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 EduAccess Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+    // Simple contact form handler (demo only)
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        document.getElementById('contact-success').textContent = 'Thank you for contacting us! We will get back to you soon.';
+        this.reset();
+    });
+    </script>
+</body>
+</html> 

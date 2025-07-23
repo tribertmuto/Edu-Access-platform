@@ -1,21 +1,21 @@
 CREATE DATABASE edu_platform;
-GO
 USE edu_platform;
-GO
 
-CREATE TABLE users (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    name NVARCHAR(100) NOT NULL,
-    email NVARCHAR(100) NOT NULL UNIQUE,
-    age INT NOT NULL,
-    course NVARCHAR(50) NOT NULL,
-    created_at DATETIME DEFAULT GETDATE()
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    age INT,
+    course VARCHAR(50),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
-CREATE TABLE user_enrollments (
-    id INT IDENTITY(1,1) PRIMARY KEY,
+
+CREATE TABLE IF NOT EXISTS user_enrollments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    course NVARCHAR(50) NOT NULL,
-    enrolled_at DATETIME DEFAULT GETDATE(),
+    course VARCHAR(50) NOT NULL,
+    enrolled_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
