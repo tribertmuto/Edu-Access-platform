@@ -58,8 +58,8 @@ if ($password_hash !== null) {
     $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $name, $email, $password_hash);
 } else if (isset($_POST['age']) && isset($_POST['course'])) {
-    $stmt = $conn->prepare("INSERT INTO users (name, email, age, course) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssis", $name, $email, $age, $course);
+$stmt = $conn->prepare("INSERT INTO users (name, email, age, course) VALUES (?, ?, ?, ?)");
+$stmt->bind_param("ssis", $name, $email, $age, $course);
 } else {
     echo '<p style="color:red;">Invalid registration data.</p>';
     exit;

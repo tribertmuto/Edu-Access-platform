@@ -1,5 +1,5 @@
-CREATE DATABASE edu_platform;
-USE edu_platform;
+CREATE DATABASE edu_platform_db;
+USE edu_platform_db;
 
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
