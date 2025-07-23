@@ -1,23 +1,185 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Register</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduAccess - Registration & Login</title>
+    <!-- Link to external stylesheet for responsive design -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2>Register</h2>
-  <form action="register.php" method="POST" onsubmit="validateForm(event)">
-    <input type="text" name="name" placeholder="Full Name" required>
-    <input type="email" name="email" id="email" placeholder="Email" required>
-    <input type="number" name="age" placeholder="Age" required>
-    <select name="course" required>
-      <option value="">Select Course</option>
-      <option value="html">HTML Basics</option>
-      <option value="js">JavaScript 101</option>
-    </select>
-    <span id="error" class="error"></span>
-    <button type="submit">Submit</button>
-  </form>
-  <script src="script.js"></script>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">🎓 EduAccess</a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#features">Why Us</a></li>
+                <li><a href="index.html#courses">Courses</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="auth.html" class="auth-btn register-btn">Register</a></li>
+                <li><a href="auth.html" class="auth-btn login-btn">Login</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- What Makes EduAccess Stand Out? -->
+    <section class="edu-features">
+        <div class="container">
+            <h2 class="edu-features-title">
+                <span>What Makes EduAccess Stand Out?</span>
+            </h2>
+            <div class="edu-features-grid">
+                <div class="edu-feature-card">
+                    <div class="edu-feature-icon" aria-hidden="true">📚</div>
+                    <h3 class="edu-feature-heading">Expert-Led Courses</h3>
+                    <p class="edu-feature-desc">Gain insights from seasoned professionals and passionate educators dedicated to your success.</p>
+                </div>
+                <div class="edu-feature-card">
+                    <div class="edu-feature-icon" aria-hidden="true">💻</div>
+                    <h3 class="edu-feature-heading">Interactive Learning</h3>
+                    <p class="edu-feature-desc">Enjoy engaging lessons with projects, quizzes, and interactive content that makes learning fun and effective.</p>
+                </div>
+                <div class="edu-feature-card">
+                    <div class="edu-feature-icon" aria-hidden="true">🏆</div>
+                    <h3 class="edu-feature-heading">Certified Programs</h3>
+                    <p class="edu-feature-desc">Earn industry-recognized certificates to boost your resume and showcase your skills.</p>
+                </div>
+                <div class="edu-feature-card">
+                    <div class="edu-feature-icon" aria-hidden="true">📱</div>
+                    <h3 class="edu-feature-heading">Mobile Learning</h3>
+                    <p class="edu-feature-desc">Learn from anywhere, at any time, with our fully mobile-optimized platform.</p>
+                </div>
+                <div class="edu-feature-card">
+                    <div class="edu-feature-icon" aria-hidden="true">👥</div>
+                    <h3 class="edu-feature-heading">Community Support</h3>
+                    <p class="edu-feature-desc">Join a community of learners, ask questions, share ideas, and grow together.</p>
+                </div>
+                <div class="edu-feature-card">
+                    <div class="edu-feature-icon" aria-hidden="true">⚡</div>
+                    <h3 class="edu-feature-heading">Personalized Path</h3>
+                    <p class="edu-feature-desc">Discover your ideal learning journey with smart course recommendations based on your interests and goals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Explore Our Most Popular Courses -->
+    <section class="courses-section" style="padding: 3rem 0; background: rgba(255,255,255,0.03);">
+        <div class="container">
+            <h2 style="text-align:center; color:#1a237e; font-size:2rem; letter-spacing:1px; margin-bottom:2.2rem;">
+                Explore Our Most Popular Courses
+            </h2>
+            <div class="features-grid" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+                <section class="feature-card" style="background:rgba(255,255,255,0.12); border-radius:1rem; padding:1.5rem; margin-bottom:1rem; min-width:220px; max-width:270px; text-align:center;">
+                    <h3>Web Development Bootcamp</h3>
+                    <p>Learn HTML, CSS, JavaScript, React, and Node.js by building real-world projects from scratch.</p>
+                    <span style="color:#6a1b9a; font-weight:bold; font-size:1.1rem;">$199</span><br>
+                    <button class="cta-button" style="margin-top:0.7rem;">Enroll Now</button>
+                </section>
+                <section class="feature-card" style="background:rgba(255,255,255,0.12); border-radius:1rem; padding:1.5rem; margin-bottom:1rem; min-width:220px; max-width:270px; text-align:center;">
+                    <h3>Data Science & Analytics</h3>
+                    <p>Master Python, machine learning, data visualization, and analytics to make data-driven decisions.</p>
+                    <span style="color:#6a1b9a; font-weight:bold; font-size:1.1rem;">$249</span><br>
+                    <button class="cta-button" style="margin-top:0.7rem;">Enroll Now</button>
+                </section>
+                <section class="feature-card" style="background:rgba(255,255,255,0.12); border-radius:1rem; padding:1.5rem; margin-bottom:1rem; min-width:220px; max-width:270px; text-align:center;">
+                    <h3>Digital Marketing Mastery</h3>
+                    <p>Learn SEO, content marketing, social media, and analytics to grow any brand online.</p>
+                    <span style="color:#6a1b9a; font-weight:bold; font-size:1.1rem;">$149</span><br>
+                    <button class="cta-button" style="margin-top:0.7rem;">Enroll Now</button>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- EduAccess by the Numbers -->
+    <section class="stats-section" style="padding: 2.5rem 0; background: rgba(255,255,255,0.08); border-radius: 1.2rem; margin-bottom:2.5rem;">
+        <div class="container">
+            <h2 style="text-align:center; color:#1a237e; margin-bottom:2rem; font-size:2rem; letter-spacing:1px;">EduAccess by the Numbers</h2>
+            <div class="stats-grid" style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;">
+                <section class="stat-card" style="background:rgba(255,255,255,0.12); border-radius:1rem; padding:2rem 2.5rem; text-align:center; min-width:160px;">
+                    <div style="font-size:2.2rem; font-weight:bold; color:#5a6fd8;">50,000</div>
+                    <div style="margin-top:0.5rem; color:#222; font-size:1.1rem;">Students Enrolled</div>
+                </section>
+                <section class="stat-card" style="background:rgba(255,255,255,0.12); border-radius:1rem; padding:2rem 2.5rem; text-align:center; min-width:160px;">
+                    <div style="font-size:2.2rem; font-weight:bold; color:#43a047;">500</div>
+                    <div style="margin-top:0.5rem; color:#222; font-size:1.1rem;">Courses Available</div>
+                </section>
+                <section class="stat-card" style="background:rgba(255,255,255,0.12); border-radius:1rem; padding:2rem 2.5rem; text-align:center; min-width:160px;">
+                    <div style="font-size:2.2rem; font-weight:bold; color:#fbc02d;">98<span style="font-size:1.2rem;">%</span></div>
+                    <div style="margin-top:0.5rem; color:#222; font-size:1.1rem;">Success Rate</div>
+                </section>
+                <section class="stat-card" style="background:rgba(255,255,255,0.12); border-radius:1rem; padding:2rem 2.5rem; text-align:center; min-width:160px;">
+                    <div style="font-size:2.2rem; font-weight:bold; color:#6a1b9a;">150</div>
+                    <div style="margin-top:0.5rem; color:#222; font-size:1.1rem;">Expert Instructors</div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>EduAccess</h3>
+                    <p>Transforming lives through accessible, high-quality education—empowering learners to reach their full potential.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html#courses">Courses</a>
+                    <a href="index.html#about">About Us</a>
+                    <a href="index.html#careers">Careers</a>
+                    <a href="index.html#blog">Blog</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="index.html#help">Help Center</a>
+                    <a href="index.html#contact">Contact Us</a>
+                    <a href="index.html#faq">FAQ</a>
+                    <a href="index.html#terms">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EduAccess Platform. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Toggle between registration and login forms
+    const showLoginBtn = document.getElementById('show-login');
+    const showRegisterBtn = document.getElementById('show-register');
+    const loginContainer = document.getElementById('login-container');
+    const authContainers = document.querySelectorAll('.auth-container');
+
+    if (showLoginBtn) {
+        showLoginBtn.addEventListener('click', function() {
+            authContainers[0].style.display = 'none';
+            loginContainer.style.display = 'block';
+        });
+    }
+    if (showRegisterBtn) {
+        showRegisterBtn.addEventListener('click', function() {
+            loginContainer.style.display = 'none';
+            authContainers[0].style.display = 'block';
+        });
+    }
+
+    // Prevent default form submission for demo
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('This is a demo. Registration/Login functionality is not connected to a database.');
+        });
+    });
+    </script>
 </body>
 </html>

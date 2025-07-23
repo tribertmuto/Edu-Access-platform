@@ -181,3 +181,46 @@ function showEnrollmentMessage() {
         }, 300);
     }, 4000);
 }
+
+// Prefill course field from URL on register.html
+if (document.querySelector('.register-form')) {
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const course = urlParams.get('course');
+        const courseInput = document.getElementById('reg-course');
+        if (course && courseInput) {
+            courseInput.value = course;
+        }
+    });
+    // AJAX registration
+    document.querySelector('.register-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const form = this;
+        const formData = new FormData(form);
+        fetch('register.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.text())
+        .then(data => {
+            let msg = document.getElementById('register-message');
+            if (!msg) {
+                msg = document.createElement('div');
+                msg.id = 'register-message';
+                form.parentNode.insertBefore(msg, form);
+            }
+            msg.innerHTML = data;
+            msg.scrollIntoView({behavior: 'smooth'});
+            // If registration is successful, redirect to course page after 2 seconds
+            if (data.includes('Registration successful')) {
+                setTimeout(() => {
+                    const course = document.getElementById('reg-course').value;
+                    window.location.href = `course-details.html?course=${encodeURIComponent(course)}`;
+                }, 2000);
+            }
+        })
+        .catch(err => {
+            alert('Registration failed. Please try again.');
+        });
+    });
+}

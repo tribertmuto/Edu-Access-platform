@@ -1,4 +1,8 @@
 <?php
+// Enable strict error reporting for development
+// Comment out the next line in production
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 $host = "localhost";
 $username = "root";
 $password = ""; // Set this if your MySQL has a password
@@ -9,6 +13,9 @@ $conn = new mysqli($host, $username, $password, $database);
 
 // Check connection
 if ($conn->connect_error) {
+    // In production, do not show detailed errors
+    // die("<p style='color:red;'>❌ Connection failed. Please try again later.</p>");
+    // In development, show detailed error
     die("<p style='color:red;'>❌ Connection failed: " . $conn->connect_error . "</p>");
 }
 

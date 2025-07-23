@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduAccess - Empower Your Learning Journey</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Link to external responsive stylesheet -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -17,11 +18,8 @@
                 <li><a href="#courses">Courses</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li>
-                    <form action="connect-db.php" method="post" style="display:inline;">
-                        <button type="submit" class="db-connect-btn">Connect to Database</button>
-                    </form>
-                </li>
+                <li><a href="auth.html" class="auth-btn register-btn">Register</a></li>
+                <li><a href="auth.html" class="auth-btn login-btn">Login</a></li>
             </ul>
             <div class="mobile-menu">
                 <span></span>
@@ -41,80 +39,76 @@
     </section>
 
     <!-- Features Section -->
-    <section class="features" id="features">
+    <section class="edu-features" id="features">
         <div class="container">
-            <h2 class="section-title fade-in">What Makes EduAccess Stand Out?</h2>
-            <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">📚</div>
-                    <h3>Expert-Led Courses</h3>
-                    <p>Gain insights from seasoned professionals and passionate educators dedicated to your success.</p>
+            <h2 class="edu-features-title">
+                <span>What Makes EduAccess Stand Out?</span>
+            </h2>
+            <div class="edu-features-grid">
+                <div class="edu-feature-card">
+                    <div class="edu-feature-icon" aria-hidden="true">📚</div>
+                    <h3 class="edu-feature-heading">Expert-Led Courses</h3>
+                    <p class="edu-feature-desc">Gain insights from seasoned professionals and passionate educators dedicated to your success.</p>
                 </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">💻</div>
-                    <h3>Interactive Learning</h3>
-                    <p>Enjoy engaging lessons with projects, quizzes, and interactive content that makes learning fun and effective.</p>
+                <div class="edu-feature-card">
+                    <div class="edu-feature-icon" aria-hidden="true">💻</div>
+                    <h3 class="edu-feature-heading">Interactive Learning</h3>
+                    <p class="edu-feature-desc">Enjoy engaging lessons with projects, quizzes, and interactive content that makes learning fun and effective.</p>
                 </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🏆</div>
-                    <h3>Certified Programs</h3>
-                    <p>Earn industry-recognized certificates to boost your resume and showcase your skills.</p>
+                <div class="edu-feature-card">
+                    <div class="edu-feature-icon" aria-hidden="true">🏆</div>
+                    <h3 class="edu-feature-heading">Certified Programs</h3>
+                    <p class="edu-feature-desc">Earn industry-recognized certificates to boost your resume and showcase your skills.</p>
                 </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">📱</div>
-                    <h3>Mobile Learning</h3>
-                    <p>Learn from anywhere, at any time, with our fully mobile-optimized platform.</p>
+                <div class="edu-feature-card">
+                    <div class="edu-feature-icon" aria-hidden="true">📱</div>
+                    <h3 class="edu-feature-heading">Mobile Learning</h3>
+                    <p class="edu-feature-desc">Learn from anywhere, at any time, with our fully mobile-optimized platform.</p>
                 </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">👥</div>
-                    <h3>Community Support</h3>
-                    <p>Join a community of learners, ask questions, share ideas, and grow together.</p>
+                <div class="edu-feature-card">
+                    <div class="edu-feature-icon" aria-hidden="true">👥</div>
+                    <h3 class="edu-feature-heading">Community Support</h3>
+                    <p class="edu-feature-desc">Join a community of learners, ask questions, share ideas, and grow together.</p>
                 </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Personalized Path</h3>
-                    <p>Discover your ideal learning journey with smart course recommendations based on your interests and goals.</p>
+                <div class="edu-feature-card">
+                    <div class="edu-feature-icon" aria-hidden="true">⚡</div>
+                    <h3 class="edu-feature-heading">Personalized Path</h3>
+                    <p class="edu-feature-desc">Discover your ideal learning journey with smart course recommendations based on your interests and goals.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Courses Section -->
-    <section class="courses" id="courses">
+    <section class="edu-courses" id="courses">
         <div class="container">
-            <h2 class="section-title fade-in">Explore Our Most Popular Courses</h2>
-            <div class="courses-grid">
-                <div class="course-card fade-in">
-                    <div class="course-image" data-course="web-dev"></div>
-                    <div class="course-content">
-                        <h3 class="course-title">Web Development Bootcamp</h3>
-                        <p class="course-description">Learn HTML, CSS, JavaScript, React, and Node.js by building real-world projects from scratch.</p>
-                        <div class="course-meta">
-                            <span class="course-price">$199</span>
-                            <button class="enroll-btn">Enroll Now</button>
-                        </div>
+            <h2 class="edu-courses-title">Explore Our Most Popular Courses</h2>
+            <div class="edu-courses-grid">
+                <div class="edu-course-card">
+                    <div class="edu-course-icon" aria-hidden="true">💻</div>
+                    <h3 class="edu-course-title">Web Development Bootcamp</h3>
+                    <p class="edu-course-desc">Learn HTML, CSS, JavaScript, React, and Node.js by building real-world projects from scratch.</p>
+                    <div class="edu-course-meta">
+                        <span class="edu-course-price">$199</span>
+                        <button class="edu-enroll-btn">Enroll Now</button>
                     </div>
                 </div>
-                <div class="course-card fade-in">
-                    <div class="course-image" data-course="data-science"></div>
-                    <div class="course-content">
-                        <h3 class="course-title">Data Science & Analytics</h3>
-                        <p class="course-description">Master Python, machine learning, data visualization, and analytics to make data-driven decisions.</p>
-                        <div class="course-meta">
-                            <span class="course-price">$249</span>
-                            <button class="enroll-btn">Enroll Now</button>
-                        </div>
+                <div class="edu-course-card">
+                    <div class="edu-course-icon" aria-hidden="true">📊</div>
+                    <h3 class="edu-course-title">Data Science & Analytics</h3>
+                    <p class="edu-course-desc">Master Python, machine learning, data visualization, and analytics to make data-driven decisions.</p>
+                    <div class="edu-course-meta">
+                        <span class="edu-course-price">$249</span>
+                        <button class="edu-enroll-btn">Enroll Now</button>
                     </div>
                 </div>
-                <div class="course-card fade-in">
-                    <div class="course-image" data-course="digital-marketing"></div>
-                    <div class="course-content">
-                        <h3 class="course-title">Digital Marketing Mastery</h3>
-                        <p class="course-description">Learn SEO, content marketing, social media, and analytics to grow any brand online.</p>
-                        <div class="course-meta">
-                            <span class="course-price">$149</span>
-                            <button class="enroll-btn">Enroll Now</button>
-                        </div>
+                <div class="edu-course-card">
+                    <div class="edu-course-icon" aria-hidden="true">📈</div>
+                    <h3 class="edu-course-title">Digital Marketing Mastery</h3>
+                    <p class="edu-course-desc">Learn SEO, content marketing, social media, and analytics to grow any brand online.</p>
+                    <div class="edu-course-meta">
+                        <span class="edu-course-price">$149</span>
+                        <button class="edu-enroll-btn">Enroll Now</button>
                     </div>
                 </div>
             </div>
@@ -122,25 +116,25 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="stats">
+    <section class="edu-stats">
         <div class="container">
-            <h2 class="section-title">EduAccess by the Numbers</h2>
-            <div class="stats-grid">
-                <div class="stat-item fade-in">
-                    <div class="stat-number" data-count="50000">0</div>
-                    <div class="stat-label">Students Enrolled</div>
+            <h2 class="edu-stats-title">EduAccess by the Numbers</h2>
+            <div class="edu-stats-grid">
+                <div class="edu-stat-card">
+                    <div class="edu-stat-number">50,000</div>
+                    <div class="edu-stat-label">Students Enrolled</div>
                 </div>
-                <div class="stat-item fade-in">
-                    <div class="stat-number" data-count="500">0</div>
-                    <div class="stat-label">Courses Available</div>
+                <div class="edu-stat-card">
+                    <div class="edu-stat-number">500</div>
+                    <div class="edu-stat-label">Courses Available</div>
                 </div>
-                <div class="stat-item fade-in">
-                    <div class="stat-number" data-count="98">0</div>
-                    <div class="stat-label">% Success Rate</div>
+                <div class="edu-stat-card">
+                    <div class="edu-stat-number">98<span class="edu-stat-percent">%</span></div>
+                    <div class="edu-stat-label">Success Rate</div>
                 </div>
-                <div class="stat-item fade-in">
-                    <div class="stat-number" data-count="150">0</div>
-                    <div class="stat-label">Expert Instructors</div>
+                <div class="edu-stat-card">
+                    <div class="edu-stat-number">150</div>
+                    <div class="edu-stat-label">Expert Instructors</div>
                 </div>
             </div>
         </div>

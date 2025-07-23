@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EduAccess - Login or Register</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .auth-tab {
+            padding: 1rem 2rem;
+            cursor: pointer;
+            background: #f3f6ff;
+            border: none;
+            font-weight: bold;
+            color: #1a237e;
+            border-radius: 1rem 1rem 0 0;
+            margin: 0 0.5rem;
+            transition: background 0.2s;
+        }
+        .auth-tab.active {
+            background: linear-gradient(90deg, #ffd700 30%, #5a6fd8 100%);
+            color: #fff;
+        }
+        .auth-form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.95);
+            border-radius: 1.2rem;
+            box-shadow: 0 6px 32px rgba(90,111,216,0.10);
+            padding: 2.5rem 2rem;
+        }
+        .auth-form {
+            display: none;
+        }
+        .auth-form.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">🎓 EduAccess</a>
+        </div>
+    </nav>
+    <main style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(0,0,0,0.08), rgba(255,255,255,0.2)); padding-top: 6rem;">
+        <div>
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="show-login-tab">Login</button>
+                <button class="auth-tab" id="show-register-tab">Register</button>
+            </div>
+            <div class="auth-form-container">
+                <!-- Login Form -->
+                <form class="auth-form active" id="login-form" autocomplete="off">
+                    <h2 style="text-align:center; margin-bottom: 1.5rem; color: #1a237e;">Login</h2>
+                    <div class="form-group" style="margin-bottom: 1.2rem;">
+                        <label for="login-email" style="color:#1a237e;">Email</label>
+                        <input type="email" id="login-email" name="email" required style="width:100%; padding:0.7rem; border-radius:0.5rem; border:1px solid #ddd; margin-top:0.3rem;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1.2rem;">
+                        <label for="login-password" style="color:#1a237e;">Password</label>
+                        <input type="password" id="login-password" name="password" required style="width:100%; padding:0.7rem; border-radius:0.5rem; border:1px solid #ddd; margin-top:0.3rem;">
+                    </div>
+                    <div id="login-message" style="margin-bottom:1rem;"></div>
+                    <button type="submit" class="cta-button" style="width:100%;">Login</button>
+                </form>
+                <!-- Register Form -->
+                <form class="auth-form" id="register-form" autocomplete="off">
+                    <h2 style="text-align:center; margin-bottom: 1.5rem; color: #1a237e;">Register</h2>
+                    <div class="form-group" style="margin-bottom: 1.2rem;">
+                        <label for="reg-name" style="color:#1a237e;">Name</label>
+                        <input type="text" id="reg-name" name="name" required style="width:100%; padding:0.7rem; border-radius:0.5rem; border:1px solid #ddd; margin-top:0.3rem;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1.2rem;">
+                        <label for="reg-email" style="color:#1a237e;">Email</label>
+                        <input type="email" id="reg-email" name="email" required style="width:100%; padding:0.7rem; border-radius:0.5rem; border:1px solid #ddd; margin-top:0.3rem;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1.2rem;">
+                        <label for="reg-password" style="color:#1a237e;">Password</label>
+                        <input type="password" id="reg-password" name="password" required style="width:100%; padding:0.7rem; border-radius:0.5rem; border:1px solid #ddd; margin-top:0.3rem;">
+                    </div>
+                    <div id="register-message" style="margin-bottom:1rem;"></div>
+                    <button type="submit" class="cta-button" style="width:100%;">Register</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script>
+    // Tab switching
+    const loginTab = document.getElementById('show-login-tab');
+    const registerTab = document.getElementById('show-register-tab');
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    loginTab.onclick = function() {
+        loginTab.classList.add('active');
+        registerTab.classList.remove('active');
+        loginForm.classList.add('active');
+        registerForm.classList.remove('active');
+    };
+    registerTab.onclick = function() {
+        registerTab.classList.add('active');
+        loginTab.classList.remove('active');
+        registerForm.classList.add('active');
+        loginForm.classList.remove('active');
+    };
+
+    // AJAX login (you need a login.php backend)
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(loginForm);
+        fetch('login.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById('login-message').innerHTML = data;
+            if (data.includes('Login successful')) {
+                setTimeout(() => {
+                    window.location.href = 'index.html'; // or dashboard.html
+                }, 1500);
+            }
+        })
+        .catch(() => {
+            document.getElementById('login-message').textContent = 'Login failed. Please try again.';
+        });
+    });
+
+    // AJAX registration (you need to update register.php to accept password)
+    registerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(registerForm);
+        fetch('register.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById('register-message').innerHTML = data;
+            if (data.includes('Registration successful')) {
+                setTimeout(() => {
+                    window.location.href = 'index.html'; // or dashboard.html
+                }, 1500);
+            }
+        })
+        .catch(() => {
+            document.getElementById('register-message').textContent = 'Registration failed. Please try again.';
+        });
+    });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">🎓 EduAccess</a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#features">Why Us</a></li>
+                <li><a href="index.html#courses">Courses</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container" style="padding:2rem;">
+        <h1 id="course-title"></h1>
+        <div id="course-description"></div>
+        <a href="index.html" class="cta-button" style="margin-top:2rem;display:inline-block;">Back to Home</a>
+    </main>
+    <script>
+    // Display course details based on URL parameter
+    const params = new URLSearchParams(window.location.search);
+    const course = params.get('course');
+    const title = document.getElementById('course-title');
+    const desc = document.getElementById('course-description');
+    // You can expand this with more courses/descriptions
+    const courseData = {
+        'Web Development Bootcamp': 'Learn HTML, CSS, JavaScript, React, and Node.js by building real-world projects from scratch.',
+        'Data Science & Analytics': 'Master Python, machine learning, data visualization, and analytics to make data-driven decisions.',
+        'Digital Marketing Mastery': 'Learn SEO, content marketing, social media, and analytics to grow any brand online.'
+    };
+    if (course && courseData[course]) {
+        title.textContent = course;
+        desc.textContent = courseData[course];
+    } else {
+        title.textContent = 'Course Not Found';
+        desc.textContent = '';
+    }
+    </script>
+</body>
+</html> 
