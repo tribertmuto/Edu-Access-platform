@@ -116,7 +116,7 @@ try {
     $password_hash = hashPassword($password);
     
     // Prepare SQL statement
-    $sql = "INSERT INTO users (name, email, password, age, course, created_at) VALUES (?, ?, ?, ?, ?, NOW())";
+    $sql = "INSERT INTO users (name, email, password, age, created_at) VALUES (?, ?, ?, ?, NOW())";
     $stmt = $conn->prepare($sql);
     
     if (!$stmt) {
@@ -124,7 +124,7 @@ try {
     }
     
     // Bind parameters
-    $stmt->bind_param("sssis", $name, $email, $password_hash, $age, $course);
+    $stmt->bind_param("sssi", $name, $email, $password_hash, $age);
     
     // Execute the statement
     if ($stmt->execute()) {

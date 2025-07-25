@@ -83,7 +83,18 @@
                         <label for="reg-password" style="color:#1a237e;">Password</label>
                         <input type="password" id="reg-password" name="password" required style="width:100%; padding:0.7rem; border-radius:0.5rem; border:1px solid #ddd; margin-top:0.3rem;">
                     </div>
-                    <input type="hidden" id="reg-course" name="course">
+                    <div class="form-group" style="margin-bottom: 1.2rem;">
+                        <label for="reg-course" style="color:#1a237e;">Select Course</label>
+                        <select id="reg-course" name="course" required style="width:100%; padding:0.7rem; border-radius:0.5rem; border:1px solid #ddd; margin-top:0.3rem;">
+                            <option value="">-- Choose a course --</option>
+                            <option value="Web Development Bootcamp">Web Development Bootcamp</option>
+                            <option value="Data Science & Analytics">Data Science & Analytics</option>
+                            <option value="Digital Marketing Mastery">Digital Marketing Mastery</option>
+                            <option value="UI/UX Design Fundamentals">UI/UX Design Fundamentals</option>
+                            <option value="Cloud Computing Essentials">Cloud Computing Essentials</option>
+                            <option value="Cybersecurity Basics">Cybersecurity Basics</option>
+                        </select>
+                    </div>
                     <div id="register-message" style="margin-bottom:1rem;"></div>
                     <button type="submit" class="cta-button" style="width:100%;">Register</button>
                 </form>
@@ -115,7 +126,12 @@
         const course = urlParams.get('course');
         const courseInput = document.getElementById('reg-course');
         if (course && courseInput) {
-            courseInput.value = course;
+            for (let i = 0; i < courseInput.options.length; i++) {
+                if (courseInput.options[i].value === course) {
+                    courseInput.selectedIndex = i;
+                    break;
+                }
+            }
         }
     });
 

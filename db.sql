@@ -36,7 +36,10 @@ CREATE TABLE IF NOT EXISTS user_enrollments (
 INSERT INTO courses (course_name, description, price, difficulty_level) VALUES
 ('Web Development Bootcamp', 'Learn HTML, CSS, JavaScript, React, and Node.js by building real-world projects from scratch.', 199.00, 'Beginner'),
 ('Data Science & Analytics', 'Master Python, machine learning, data visualization, and analytics to make data-driven decisions.', 249.00, 'Intermediate'),
-('Digital Marketing Mastery', 'Learn SEO, content marketing, social media, and analytics to grow any brand online.', 149.00, 'Beginner');
+('Digital Marketing Mastery', 'Learn SEO, content marketing, social media, and analytics to grow any brand online.', 149.00, 'Beginner'),
+('UI/UX Design Fundamentals', 'Understand the principles of user interface and user experience design, and create stunning, user-friendly apps and websites.', 179.00, 'Beginner'),
+('Cloud Computing Essentials', 'Get started with cloud platforms, virtualization, and deploying scalable applications on AWS, Azure, or Google Cloud.', 229.00, 'Intermediate'),
+('Cybersecurity Basics', 'Learn the fundamentals of cybersecurity, ethical hacking, and how to protect systems from threats.', 199.00, 'Beginner');
 
 -- (Optional) Sample user for testing
 -- Password should be hashed in production; here it is hashed for demo
