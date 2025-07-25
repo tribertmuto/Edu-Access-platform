@@ -1,45 +1,355 @@
--- Create the EduAccess platform database
-CREATE DATABASE IF NOT EXISTS edu_platform_db;
-USE edu_platform_db;
+/* EduAccess Platform Modern Stylesheet */
 
--- Users table: stores all registered users
-CREATE TABLE IF NOT EXISTS users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    age INT,
-    course VARCHAR(100), -- Optional: last course enrolled or interested in
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
+:root {
+  --primary: #2d6cdf;
+  --primary-dark: #1a417a;
+  --accent: #f7b32b;
+  --bg: #f4f8fb;
+  --text: #222;
+  --text-light: #555;
+  --white: #fff;
+  --shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+}
 
--- Courses table: stores all available courses
-CREATE TABLE IF NOT EXISTS courses (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    course_name VARCHAR(100) NOT NULL UNIQUE,
-    description TEXT,
-    price DECIMAL(8,2) DEFAULT 0.00,
-    difficulty_level ENUM('Beginner', 'Intermediate', 'Advanced') DEFAULT 'Beginner',
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+}
 
--- User enrollments: tracks which users are enrolled in which courses
-CREATE TABLE IF NOT EXISTS user_enrollments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    course_id INT NOT NULL,
-    enrolled_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
-);
+/* Navbar */
+.navbar {
+  background: var(--white);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.5rem 1.5rem;
+}
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--primary);
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+  margin: 0;
+  padding: 0;
+}
+.nav-links li a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-links li a:hover,
+.nav-links li a.active {
+  background: var(--primary);
+  color: var(--white);
+}
+.auth-btn {
+  background: var(--primary);
+  color: var(--white) !important;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+  transition: background 0.2s;
+}
+.auth-btn:hover {
+  background: var(--primary-dark);
+}
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 4px;
+}
+.mobile-menu span {
+  width: 25px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 2px;
+}
 
--- Sample courses for testing
-INSERT INTO courses (course_name, description, price, difficulty_level) VALUES
-('Web Development Bootcamp', 'Learn HTML, CSS, JavaScript, React, and Node.js by building real-world projects from scratch.', 199.00, 'Beginner'),
-('Data Science & Analytics', 'Master Python, machine learning, data visualization, and analytics to make data-driven decisions.', 249.00, 'Intermediate'),
-('Digital Marketing Mastery', 'Learn SEO, content marketing, social media, and analytics to grow any brand online.', 149.00, 'Beginner');
+/* Hero Section */
+.hero {
+  background: linear-gradient(120deg, var(--primary) 60%, var(--accent) 100%);
+  color: var(--white);
+  padding: 4rem 1.5rem 3rem 1.5rem;
+  text-align: center;
+}
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #e6e6e6;
+}
+.cta-button {
+  background: var(--accent);
+  color: var(--primary-dark);
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.10);
+}
+.cta-button:hover {
+  background: var(--primary-dark);
+  color: var(--white);
+}
 
--- (Optional) Sample user for testing
--- Password should be hashed in production; here it is plain for demo only
-INSERT INTO users (name, email, password, age, course) VALUES
-('Test User', 'test@example.com', 'password123', 25, 'Web Development Bootcamp');
+/* Features Section */
+.edu-features {
+  background: var(--white);
+  padding: 3rem 1.5rem;
+}
+.edu-features-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--primary-dark);
+}
+.edu-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.edu-feature-card {
+  background: var(--bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 2rem 1.2rem;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.edu-feature-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 6px 24px rgba(44, 62, 80, 0.12);
+}
+.edu-feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.7rem;
+}
+.edu-feature-heading {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+.edu-feature-desc {
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+/* Courses Section */
+.edu-courses {
+  background: var(--bg);
+  padding: 3rem 1.5rem;
+}
+.edu-courses-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--primary-dark);
+}
+.edu-courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.edu-course-card {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 2rem 1.2rem;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+.edu-course-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 6px 24px rgba(44, 62, 80, 0.12);
+}
+.edu-course-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.7rem;
+}
+.edu-course-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+.edu-course-desc {
+  color: var(--text-light);
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+}
+.edu-course-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.edu-course-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+.edu-enroll-btn {
+  background: var(--primary);
+  color: var(--white);
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.edu-enroll-btn:hover {
+  background: var(--primary-dark);
+}
+
+/* Stats Section */
+.edu-stats {
+  background: var(--white);
+  padding: 3rem 1.5rem;
+}
+.edu-stats-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--primary-dark);
+}
+.edu-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.edu-stat-card {
+  background: var(--bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 2rem 1.2rem;
+  text-align: center;
+}
+.edu-stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary);
+}
+.edu-stat-label {
+  color: var(--text-light);
+  font-size: 1rem;
+}
+.edu-stat-percent {
+  font-size: 1rem;
+  color: var(--accent);
+}
+
+/* Footer */
+.footer {
+  background: var(--primary-dark);
+  color: var(--white);
+  padding: 2.5rem 1.5rem 1rem 1.5rem;
+}
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto 1.5rem auto;
+}
+.footer-section h3 {
+  margin-top: 0;
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+.footer-section a {
+  color: #e6e6e6;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+  font-size: 0.98rem;
+}
+.footer-section a:hover {
+  color: var(--accent);
+}
+.footer-bottom {
+  text-align: center;
+  color: #b3c6e0;
+  font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .nav-container, .container, .footer-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+@media (max-width: 700px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: var(--white);
+    flex-direction: column;
+    width: 180px;
+    box-shadow: var(--shadow);
+    border-radius: 0 0 8px 8px;
+    z-index: 99;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .mobile-menu {
+    display: flex;
+  }
+  .nav-container {
+    position: relative;
+  }
+}
+@media (max-width: 600px) {
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+  .edu-features-title, .edu-courses-title, .edu-stats-title {
+    font-size: 1.3rem;
+  }
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+}

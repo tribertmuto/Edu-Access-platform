@@ -16,6 +16,37 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+// Helper functions
+function sanitizeInput($data) {
+    return htmlspecialchars(trim($data), ENT_QUOTES, 'UTF-8');
+}
+function validateEmail($email) {
+    return filter_var($email, FILTER_VALIDATE_EMAIL);
+}
+function hashPassword($password) {
+    return password_hash($password, PASSWORD_DEFAULT);
+}
+function emailExists($email) {
+    global $conn;
+    $stmt = $conn->prepare('SELECT id FROM users WHERE email = ?');
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $stmt->store_result();
+    $exists = $stmt->num_rows > 0;
+    $stmt->close();
+    return $exists;
+}
+function getCourseId($courseName) {
+    global $conn;
+    $stmt = $conn->prepare('SELECT id FROM courses WHERE course_name = ?');
+    $stmt->bind_param('s', $courseName);
+    $stmt->execute();
+    $stmt->bind_result($id);
+    $stmt->fetch();
+    $stmt->close();
+    return $id ?? null;
+}
+
 // Initialize variables
 $name = '';
 $email = '';
@@ -24,59 +55,38 @@ $age = null;
 $course = '';
 $errors = [];
 
-// Validate and sanitize input data
-if (isset($_POST['name'])) {
-    $name = sanitizeInput($_POST['name']);
-    if (strlen($name) < 2 || strlen($name) > 100) {
-        $errors[] = "Name must be between 2 and 100 characters.";
-    }
-    if (!preg_match("/^[a-zA-Z\s'-]+$/", $name)) {
-        $errors[] = "Name can only contain letters, spaces, hyphens, and apostrophes.";
-    }
-} else {
-    $errors[] = "Name is required.";
-}
+// Input validation
+$name = isset($_POST['name']) ? sanitizeInput($_POST['name']) : '';
+$email = isset($_POST['email']) ? sanitizeInput($_POST['email']) : '';
+$password = isset($_POST['password']) ? $_POST['password'] : '';
+$age = isset($_POST['age']) && $_POST['age'] !== '' ? (int)$_POST['age'] : null;
+$course = isset($_POST['course']) ? sanitizeInput($_POST['course']) : '';
 
-if (isset($_POST['email'])) {
-    $email = sanitizeInput($_POST['email']);
-    if (!validateEmail($email)) {
-        $errors[] = "Please enter a valid email address.";
-    } else if (strlen($email) > 100) {
-        $errors[] = "Email address is too long.";
-    }
-} else {
-    $errors[] = "Email is required.";
+if (strlen($name) < 2 || strlen($name) > 100) {
+    $errors[] = 'Name must be between 2 and 100 characters.';
 }
-
-if (isset($_POST['password'])) {
-    $password = $_POST['password']; // Don't sanitize password as it may contain special characters
-    if (strlen($password) < 6) {
-        $errors[] = "Password must be at least 6 characters long.";
-    }
-    if (strlen($password) > 255) {
-        $errors[] = "Password is too long.";
-    }
-    // Optional: Add more password strength requirements
-    if (!preg_match('/[A-Za-z]/', $password) || !preg_match('/[0-9]/', $password)) {
-        $errors[] = "Password must contain at least one letter and one number.";
-    }
-} else {
-    $errors[] = "Password is required.";
+if (!preg_match("/^[a-zA-Z\s'-]+$/", $name)) {
+    $errors[] = 'Name can only contain letters, spaces, hyphens, and apostrophes.';
 }
-
-// Optional fields
-if (isset($_POST['age']) && !empty($_POST['age'])) {
-    $age = (int) $_POST['age'];
-    if ($age < 13 || $age > 120) {
-        $errors[] = "Please enter a valid age between 13 and 120.";
-    }
+if (!validateEmail($email)) {
+    $errors[] = 'Please enter a valid email address.';
+} elseif (strlen($email) > 100) {
+    $errors[] = 'Email address is too long.';
 }
-
-if (isset($_POST['course']) && !empty($_POST['course'])) {
-    $course = sanitizeInput($_POST['course']);
-    if (strlen($course) > 100) {
-        $errors[] = "Course name is too long.";
-    }
+if (strlen($password) < 6) {
+    $errors[] = 'Password must be at least 6 characters long.';
+}
+if (strlen($password) > 255) {
+    $errors[] = 'Password is too long.';
+}
+if (!preg_match('/[A-Za-z]/', $password) || !preg_match('/[0-9]/', $password)) {
+    $errors[] = 'Password must contain at least one letter and one number.';
+}
+if ($age !== null && ($age < 13 || $age > 120)) {
+    $errors[] = 'Please enter a valid age between 13 and 120.';
+}
+if ($course && strlen($course) > 100) {
+    $errors[] = 'Course name is too long.';
 }
 
 // Display validation errors
@@ -122,20 +132,22 @@ try {
         
         // If a course is specified, add enrollment record
         if (!empty($course)) {
-            $enroll_sql = "INSERT INTO user_enrollments (user_id, course, enrollment_date) VALUES (?, ?, NOW())";
-            $enroll_stmt = $conn->prepare($enroll_sql);
-            if ($enroll_stmt) {
-                $enroll_stmt->bind_param("is", $user_id, $course);
-                $enroll_stmt->execute();
-                $enroll_stmt->close();
+            $course_id = getCourseId($course);
+            if ($course_id) {
+                $enroll_sql = "INSERT INTO user_enrollments (user_id, course_id, enrolled_at) VALUES (?, ?, NOW())";
+                $enroll_stmt = $conn->prepare($enroll_sql);
+                if ($enroll_stmt) {
+                    $enroll_stmt->bind_param("ii", $user_id, $course_id);
+                    $enroll_stmt->execute();
+                    $enroll_stmt->close();
+                }
             }
         }
         
         // Success response
         echo '<div style="color:green; background:#e6ffe6; padding:15px; border-radius:5px; margin:10px 0;">';
-        echo '<h4>✅ Registration Successful!</h4>';
+        echo '<h4>✅ Registration successful!</h4>';
         echo '<p>Welcome to EduAccess, <strong>' . htmlspecialchars($name) . '</strong>!</p>';
-        echo '<p>Your account has been created successfully. You will be redirected shortly...</p>';
         if (!empty($course)) {
             echo '<p>You have been enrolled in: <strong>' . htmlspecialchars($course) . '</strong></p>';
         }
@@ -167,4 +179,5 @@ try {
     
     echo '</div>';
 }
+$conn->close();
 ?>

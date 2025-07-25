@@ -9,7 +9,6 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     age INT,
-    course VARCHAR(100), -- Optional: last course enrolled or interested in
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -40,6 +39,10 @@ INSERT INTO courses (course_name, description, price, difficulty_level) VALUES
 ('Digital Marketing Mastery', 'Learn SEO, content marketing, social media, and analytics to grow any brand online.', 149.00, 'Beginner');
 
 -- (Optional) Sample user for testing
--- Password should be hashed in production; here it is plain for demo only
-INSERT INTO users (name, email, password, age, course) VALUES
-('Test User', 'test@example.com', 'password123', 25, 'Web Development Bootcamp');
+-- Password should be hashed in production; here it is hashed for demo
+INSERT INTO users (name, email, password, age) VALUES
+('Test User', 'test@example.com', '$2y$10$abcdefghijklmnopqrstuv', 25);
+
+-- (Optional) Enroll sample user in a course
+INSERT INTO user_enrollments (user_id, course_id) VALUES
+(1, 1);
