@@ -124,6 +124,29 @@
         </div>
     </section>
 
+    <!-- Registration & Login Forms -->
+    <section class="auth-section" style="padding: 3rem 0; background: rgba(255,255,255,0.03);">
+        <div class="container" style="display: flex; flex-wrap: wrap; gap: 3rem; justify-content: center;">
+            <!-- Registration Form -->
+            <form action="register.php" method="POST" id="register-form" style="background: #fff; border-radius: 1rem; padding: 2rem; min-width: 300px; max-width: 400px; box-shadow: 0 2px 12px rgba(90,111,216,0.08);">
+                <h2 style="text-align:center; color:#1a237e; margin-bottom:1.5rem;">Register</h2>
+                <input type="text" name="name" required placeholder="Full Name" style="width:100%; margin-bottom:1rem; padding:0.7rem; border-radius:0.5rem; border:1px solid #ddd;">
+                <input type="email" name="email" required placeholder="Email" style="width:100%; margin-bottom:1rem; padding:0.7rem; border-radius:0.5rem; border:1px solid #ddd;">
+                <input type="password" name="password" required placeholder="Password" style="width:100%; margin-bottom:1rem; padding:0.7rem; border-radius:0.5rem; border:1px solid #ddd;">
+                <input type="number" name="age" placeholder="Age (optional)" style="width:100%; margin-bottom:1rem; padding:0.7rem; border-radius:0.5rem; border:1px solid #ddd;">
+                <input type="text" name="course" placeholder="Course (optional)" style="width:100%; margin-bottom:1.5rem; padding:0.7rem; border-radius:0.5rem; border:1px solid #ddd;">
+                <button type="submit" class="cta-button" style="width:100%;">Register</button>
+            </form>
+            <!-- Login Form -->
+            <form action="login.php" method="POST" id="login-form" style="background: #fff; border-radius: 1rem; padding: 2rem; min-width: 300px; max-width: 400px; box-shadow: 0 2px 12px rgba(90,111,216,0.08);">
+                <h2 style="text-align:center; color:#1a237e; margin-bottom:1.5rem;">Login</h2>
+                <input type="email" name="email" required placeholder="Email" style="width:100%; margin-bottom:1rem; padding:0.7rem; border-radius:0.5rem; border:1px solid #ddd;">
+                <input type="password" name="password" required placeholder="Password" style="width:100%; margin-bottom:1.5rem; padding:0.7rem; border-radius:0.5rem; border:1px solid #ddd;">
+                <button type="submit" class="cta-button" style="width:100%;">Login</button>
+            </form>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -154,32 +177,8 @@
     </footer>
 
     <script>
-    // Toggle between registration and login forms
-    const showLoginBtn = document.getElementById('show-login');
-    const showRegisterBtn = document.getElementById('show-register');
-    const loginContainer = document.getElementById('login-container');
-    const authContainers = document.querySelectorAll('.auth-container');
-
-    if (showLoginBtn) {
-        showLoginBtn.addEventListener('click', function() {
-            authContainers[0].style.display = 'none';
-            loginContainer.style.display = 'block';
-        });
-    }
-    if (showRegisterBtn) {
-        showRegisterBtn.addEventListener('click', function() {
-            loginContainer.style.display = 'none';
-            authContainers[0].style.display = 'block';
-        });
-    }
-
-    // Prevent default form submission for demo
-    document.querySelectorAll('form').forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('This is a demo. Registration/Login functionality is not connected to a database.');
-        });
-    });
+    // Toggle between registration and login forms (optional, if you want to keep tab switching)
+    // Remove the demo JS that blocks form submission
     </script>
 </body>
 </html>
